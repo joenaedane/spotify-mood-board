@@ -24,7 +24,7 @@ export default function RecommendTable(props: Props) {
           } },
         { field: 'name', headerName: 'Song Name', flex: 1, },
         { field: 'artists', headerName: 'Artist', flex: 1},
-        {field: '', headerName: 'Play It!', flex:1, renderCell: (params)=>{
+        {field: '', headerName: '', width:60, renderCell: (params)=>{
             return (<PlayButton 
                 trackID={params.row.id}
                 currentPlayingTrack={currentPlayingTrack}
@@ -37,10 +37,10 @@ export default function RecommendTable(props: Props) {
         
       ];
     return (
-        <Box sx={{marginLeft: 4, paddingRight: 5}}>
+        <Box sx={{marginLeft: 4, paddingRight: 5, marginBottom: 5}}>
             <WebPlayback token={props.access_token} setDeviceId={setDeviceId}/>
         {
-            isError && <> Unable to play song </>
+            isError && <> Unable to play or pause song </>
         }
             {props.recommended.timer == 0 ?
                 <DataGrid sx={{ height: 400, width: '100%' }}

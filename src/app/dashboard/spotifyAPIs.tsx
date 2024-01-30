@@ -253,3 +253,21 @@ export async function callPlay(device_id: string, access_token: string, trackId:
     console.log(result)
     return true;
 }
+
+export async function pausePlay(access_token: string, device_id: string) {
+    const request = await fetch(`https://api.spotify.com/v1/me/player/pause?device_id=${device_id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      
+      if (!request.ok) {
+        console.log('something went wrong')
+        console.log(request)
+        return false;
+    } 
+    const result = await request.status;
+    console.log(result)
+    return true;
+}
